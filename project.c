@@ -102,7 +102,8 @@ void printBillSlip(float total)
     getchar();
 
 }
-void calculateBill() {
+void calculateBill() 
+{
     clearScreen();
     char code[MAX_CODE];
     int quantity;
@@ -111,7 +112,8 @@ void calculateBill() {
 
     printf("Calculating the bill...\n");
 
-    do {
+    do 
+    {
         printf("Enter Item Code: ");
         scanf("%s", code);
 
@@ -121,13 +123,17 @@ void calculateBill() {
         item *current = head;
         int found = 0;
 
-        while (current != NULL) {
-            if (strcmp(current->code, code) == 0) {
+        while (current != NULL)
+        {
+            if (strcmp(current->code, code) == 0) 
+            {
                 found = 1;
                 if (current->quantity - current->reserved >= quantity) {
                     total += current->unitPrice * quantity;
                     current->reserved += quantity;
-                } else {
+                } 
+                else 
+                {
                     printf("Not enough quantity available for %s.\n", current->name);
                 }
                 break;
@@ -135,7 +141,8 @@ void calculateBill() {
             current = current->next;
         }
 
-        if (!found) {
+        if (found==0) 
+        {
             printf("Item with code %s not found!\n", code);
         }
 
@@ -168,7 +175,7 @@ void displayAllItems()
 }
 
 void search()
-{
+ {
     clearScreen();
     int choice;
     char searchKey[50];
@@ -179,7 +186,7 @@ void search()
     printf("Enter your choice: ");
     scanf("%d", &choice);
 
-    if (choice != 1 && choice != 2)
+    if (choice != 1 && choice != 2) 
     {
         printf("Invalid choice.\n");
         return;
@@ -195,25 +202,25 @@ void search()
     printf("Name\t\tCode\tUnit Price\tQuantity\n");
     printf("--------------------------------------------\n");
 
-    while (current != NULL)
+    while (current != NULL) {
+        if ((choice == 1 && strcmp(current->code, searchKey) == 0) ||
+            (choice == 2 && strcmp(current->name, searchKey) == 0)) 
         {
-        if ((choice==1 && strcmp(current->code, searchKey) == 0) ||
-            (choice == 2 && strcmp(current->name, searchKey) == 0))
-        {
-            printf("%s\t\t%s\t%.2f\t\t%d\n", current->name, current->code, current->unitPrice, current->quantity);
+            printf("%s\t\t%s\t%.2f\t\t%d\n",current->name, current->code, current->unitPrice, current->quantity);
             found = 1;
         }
         current = current->next;
     }
 
-    if (!found)
+    if (found == 0) 
     {
-        printf("No items found with %s: %s.\n", (choice == 1) ? "code" : "name", searchKey);
+        printf("No items found\n");
     }
 
     printf("Press any key to continue...\n");
-    getchar();
-
+    getchar(); 
+    getchar(); 
+    
 }
 
 
@@ -273,7 +280,8 @@ void displayMainMenu()
         scanf("%d", &choice);
         getchar();
 
-        switch (choice) {
+        switch (choice) 
+        {
         case 1:
             addNewItem();
             break;
@@ -360,6 +368,7 @@ void editItem()
         }
         current=current->next;
     }
+
     printf("Item is not found!\n");
     printf("Press any key to continue...\n");
     getchar();
