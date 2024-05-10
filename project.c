@@ -20,8 +20,9 @@ item *head = NULL;
 
 void clearScreen()
 {
-    system("clear");
+    system("cls");
 }
+
 
 bool authenticate()
 {
