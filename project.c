@@ -149,62 +149,39 @@ void editItem()
 void deleteItem()
 {
     clearScreen();
-    int option;
-    char search[MAX_CODE];
+    char name[MAX_NAME];
     printf("Deleting an existing item...\n");
-    printf("Choose what to delete:\n");
-    printf("1. Name\n");
-    printf("2. Code\n");
-    printf("Enter your choice: ");
-    scanf("%d", &option);
+    printf("Enter Item Name to delete: ");
+    scanf("%s",name);
 
-    if (option != 1 && option != 2)
-    {
-        printf("Invalid choice!\n");
-        printf("Press Enter to continue...\n");
-        getchar();
-        return;
-    }
+    item* current=head;
+    item* prev=NULL;
 
-    printf("Enter search key: ");
-    scanf("%s", search);
-
-    int found = 0;
-
-    item *current = head;
-    item *prev = NULL;
-    while (current != NULL)
-    {
-        if ((option == 1 && strcmp(current->name, search) == 0) ||
-            (option == 2 && strcmp(current->code, search) == 0))
+    while (current!=NULL)
         {
-            found = 1;
-
-            if (prev == NULL)
+        if (strcmp(current->name,name)==0)
+        {
+            if (prev==NULL)
             {
-                head = current->next;
+                head=current->next;
             }
             else
             {
-                prev->next = current->next;
+                prev->next=current->next;
             }
-
-            printf("Item with code %s deleted successfully!\n", current->code);
             free(current);
-            printf("Press Enter to continue...\n");
+            printf("Item %s deleted successfully!\n", name);
+            printf("Press any key to continue...\n");
             getchar();
-            break;
+            getchar();
+            return;
         }
-        prev = current;
-        current = current->next;
+        prev=current;
+        current=current->next;
     }
-
-    if (found == 0)
-    {
-        printf("Item is not found!\n");
-        printf("Press Enter to continue...\n");
-        getchar();
-    }
+    printf("Item %s not found!\n", name);
+    printf("Press any key to continue...\n");
+    getchar();
 }
 
 void calculateBill()
