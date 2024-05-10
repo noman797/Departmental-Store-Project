@@ -101,14 +101,14 @@ void editItem()
     {
         printf("Invalid choice!\n");
         printf("Press any key to continue...\n");
-        getchar(); 
+        getchar();
         return;
     }
 
     printf("Enter search key (name or code): ");
-    getchar(); 
+    getchar();
     fgets(search, sizeof(search), stdin);
-    search[strcspn(search, "\n")] = '\0'; 
+    search[strcspn(search, "\n")] = '\0';
 
     int found = 0;
 
@@ -119,7 +119,7 @@ void editItem()
             (option == 2 && strcmp(current->code, search) == 0))
         {
             found = 1;
-            
+
                 printf("Item found! Enter updated details:\n");
                 printf("Enter New Name: ");
                 scanf("%s", current->name);
@@ -130,9 +130,9 @@ void editItem()
                 printf("Enter Item Quantity: ");
                 scanf("%d", &current->quantity);
                 printf("Item updated successfully!\n");
-            
+
             printf("Press any key to continue...\n");
-            getchar(); 
+            getchar();
             break;
         }
         current = current->next;
@@ -143,7 +143,7 @@ void editItem()
         printf("Item is not found!\n");
     }
     printf("Press any key to continue...\n");
-    getchar(); 
+    getchar();
 }
 
 void deleteItem()
@@ -285,7 +285,7 @@ void calculateBill()
     } while (choice == 'y');
 
     printf("Press any key to continue...\n");
-    getchar(); 
+    getchar();
     printBillSlip(total);
 }
 
@@ -308,7 +308,7 @@ void displayAllItems()
 }
 
 void search()
-{
+ {
     clearScreen();
     int choice;
     char searchKey[50];
@@ -328,19 +328,18 @@ void search()
     printf("Enter search key: ");
     scanf("%s", searchKey);
 
-    item *current = head;
+    item* current = head;
     int found = 0;
 
     printf("Search Results:\n");
     printf("Name\t\tCode\tUnit Price\tQuantity\n");
     printf("--------------------------------------------\n");
 
-    while (current != NULL)
-    {
+    while (current != NULL) {
         if ((choice == 1 && strcmp(current->code, searchKey) == 0) ||
             (choice == 2 && strcmp(current->name, searchKey) == 0))
         {
-            printf("%s\t\t%s\t%.2f\t\t%d\n", current->name, current->code, current->unitPrice, current->quantity);
+            printf("%s\t\t%s\t%.2f\t\t%d\n",current->name, current->code, current->unitPrice, current->quantity);
             found = 1;
         }
         current = current->next;
@@ -353,6 +352,8 @@ void search()
 
     printf("Press any key to continue...\n");
     getchar();
+    getchar();
+
 }
 
 void savefile()
